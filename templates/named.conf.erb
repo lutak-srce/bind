@@ -155,7 +155,7 @@ view "<%= key %>" {
 <% end -%>
 <% if value['notify-source'] and !value['notify-source'].empty? -%>
 <% value['notify-source'].each do |notisource| -%>
-    masterfile-format <%= notisource %>;
+    notify-source <%= notisource %>;
 <% end -%>
 <% end -%>
 <% if value['includes'] and !value['includes'].empty? -%>
