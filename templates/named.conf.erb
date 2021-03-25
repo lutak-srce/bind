@@ -140,7 +140,7 @@ statistics-channels {
 <% end -%>
 <% if !@views.empty? -%>
 <% @views.each {|key,value| key}.each do |key,value| -%>
-<% valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only) -%>
+<% valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
 <% @actview = key %>
 view "<%= key %>" {
 <% valid_keys.sort.each do |valid_key| -%>
@@ -151,6 +151,11 @@ view "<%= key %>" {
 <% if value['masterfile-format'] and !value['masterfile-format'].empty? -%>
 <% value['masterfile-format'].each do |fileformat| -%>
     masterfile-format <%= fileformat %>;
+<% end -%>
+<% end -%>
+<% if value['notify-source'] and !value['notify-source'].empty? -%>
+<% value['notify-source'].each do |notisource| -%>
+    masterfile-format <%= notisource %>;
 <% end -%>
 <% end -%>
 <% if value['includes'] and !value['includes'].empty? -%>
