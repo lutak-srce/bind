@@ -62,6 +62,21 @@ options {
 <% if @version -%>
     version "<%= @version %>";
 <% end -%>
+<% if @auth_nxdomain -%>
+    auth-nxdomain "<%= @auth_nxdomain %>";
+<% end -%>
+<% if @transfer_format -%>
+    transfer-format "<%= @transfer_format %>";
+<% end -%>
+<% if @max_transfer_time_in -%>
+    max-transfer-time-in "<%= @max_transfer_time_in %>";
+<% end -%>
+<% if @interface_interval -%>
+    interface-interval "<%= @interface_interval %>";
+<% end -%>
+<% if @notify -%>
+    notify "<%= @notify %>";
+<% end -%>
 <% if @dump_file -%>
     dump-file "<%= @dump_file %>";
 <% end -%>
