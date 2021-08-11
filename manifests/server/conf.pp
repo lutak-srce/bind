@@ -105,7 +105,7 @@ define bind::server::conf (
   $transfer_format        = undef,
   $max_transfer_time_in   = undef,
   $interface_interval     = undef,
-  $notify_                = undef,
+  $notif_y                = undef,
   $logging                = {},
   $tcp_clients            = '100',
   $recursive_clients      = '1000',
