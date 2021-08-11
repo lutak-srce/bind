@@ -63,7 +63,7 @@ options {
     version "<%= @version %>";
 <% end -%>
 <% if @auth_nxdomain -%>
-    auth-nxdomain "<%= @auth_nxdomain %>";
+    auth-nxdomain <%= @auth_nxdomain %>;
 <% end -%>
 <% if @transfer_format -%>
     transfer-format <%= @transfer_format %>;
