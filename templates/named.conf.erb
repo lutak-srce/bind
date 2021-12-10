@@ -46,6 +46,12 @@ options {
 <% if @tcp_clients -%>
     tcp-clients <%= @tcp_clients %>;
 <% end -%>
+<% if @transfers_in -%>
+    transfers-in <%= @transfers_in %>;
+<% end -%>
+<% if @transfers_per_ns -%>
+    transfers-per-ns <%= @transfers_per_ns %>;
+<% end -%>
 <% if !@forwarders.empty? -%>
     forwarders { <%= @forwarders.join("; ") %>; };
 <% end -%>
@@ -296,4 +302,3 @@ include "/etc/bind/zones.rfc1918";
 include "<%= filename %>";
 <% end -%>
 <% end -%>
-
