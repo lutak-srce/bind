@@ -246,9 +246,9 @@ view "<%= key %>" {
 <% @zones.sort_by {|key, value| key}.each do |key,value| -%>
     zone "<%= key %>" IN {
 <% value.each do |line| -%>
-<% if line[0..10] == 'type slave' -%>
-<% @type = line[5..9] %>
-<% end -%>
+<%- if line[0..10] == 'type slave' -%>
+<%- @type = line[5..9] -%>
+<%- end -%>
 <% if line[0..4] == 'file ' and @type == 'slave' -%>
 <% @file = line.split('"') -%>
       file "<%= @actview[0..2] %>.<%= @file[1] %>";
