@@ -3,190 +3,187 @@
 // WARNING: Puppet managed, do not edit!
 //
 
-<% if !@acls.empty? -%>
-<% @acls.sort_by {|key, value| key}.each do |key,value| -%>
-acl <%= key %> {
-<% value.each do |line| -%>
-    <%= line %>;
-<% end -%>
+<%- if !@acls.empty? -%>
+<%- @acls.sort_by {|key, value| key}.each do |key,value| -%>
+acl <%= key -%> {
+<%- value.each do |line| -%>
+    <%= line -%>;
+<%- end -%>
 };
 
-<% end -%>
-<% end -%>
-<% if !@keys.empty? -%>
-<% @keys.sort_by {|key, value| key}.each do |key,value| -%>
-key "<%= key %>" {
-<% value.each do |line| -%>
-    <%= line %>;
-<% end -%>
+<%- end -%>
+<%- end -%>
+<%- if !@keys.empty? -%>
+<%- @keys.sort_by {|key, value| key}.each do |key,value| -%>
+key "<%= key -%>" {
+<%- value.each do |line| -%>
+    <%= line -%>;
+<%- end -%>
 };
 
-<% end -%>
-<% end -%>
-<% if !@masters.empty? -%>
-<% @masters.sort_by {|key, value| key}.each do |key,value| -%>
-masters <%= key %> {
-<% value.each do |line| -%>
-    <%= line %>;
-<% end -%>
+<%- end -%>
+<%- end -%>
+<%- if !@masters.empty? -%>
+<%- @masters.sort_by {|key, value| key}.each do |key,value| -%>
+masters <%= key -%> {
+<%- value.each do |line| -%>
+    <%= line -%>;
+<%- end -%>
 };
 
-<% end -%>
-<% end -%>
+<%- end -%>
+<%- end -%>
 options {
-<% if @listen_on_port -%>
-    listen-on port <%= @listen_on_port %> { <%= @listen_on_addr.join("; ") %>; };
-<% end -%>
-<% if @listen_on_v6_port -%>
-    listen-on-v6 port <%= @listen_on_v6_port %> { <%= @listen_on_v6_addr.join("; ") %>; };
-<% end -%>
-<% if @recursive_clients -%>
-    recursive-clients <%= @recursive_clients %>;
-<% end -%>
-<% if @tcp_clients -%>
-    tcp-clients <%= @tcp_clients %>;
-<% end -%>
-<% if @transfers_in -%>
-    transfers-in <%= @transfers_in %>;
-<% end -%>
-<% if @transfers_per_ns -%>
-    transfers-per-ns <%= @transfers_per_ns %>;
-<% end -%>
-<% if !@forwarders.empty? -%>
-    forwarders { <%= @forwarders.join("; ") %>; };
-<% end -%>
-    directory "<%= @directory %>";
-<% if @managed_keys_directory -%>
-    managed-keys-directory "<%= @managed_keys_directory %>";
-<% end -%>
-<% if @hostname -%>
-    hostname "<%= @hostname %>";
-<% end -%>
-<% if @server_id -%>
-    server-id "<% @server_id.each_byte do |byte| -%><%= byte.to_s(base=16) %><% end -%>";
-<% end -%>
-<% if @version -%>
-    version "<%= @version %>";
-<% end -%>
-<% if @auth_nxdomain -%>
-    auth-nxdomain <%= @auth_nxdomain %>;
-<% end -%>
-<% if @transfer_format -%>
-    transfer-format <%= @transfer_format %>;
-<% end -%>
-<% if @max_transfer_time_in -%>
-    max-transfer-time-in <%= @max_transfer_time_in %>;
-<% end -%>
-<% if @interface_interval -%>
-    interface-interval <%= @interface_interval %>;
-<% end -%>
-<% if @notif_y -%>
-    notify <%= @notif_y %>;
-<% end -%>
-<% if @dump_file -%>
-    dump-file "<%= @dump_file %>";
-<% end -%>
-<% if @statistics_file -%>
-    statistics-file "<%= @statistics_file %>";
-<% end -%>
-<% if @memstatistics_file -%>
-    memstatistics-file "<%= @memstatistics_file %>";
-<% end -%>
-<% if !@allow_query.empty? -%>
-    allow-query { <%= @allow_query.join("; ") %>; };
-<% end -%>
-<% if !@allow_query_cache.empty? -%>
-    allow-query-cache { <%= @allow_query_cache.join("; ") %>; };
-<% end -%>
-    recursion <%= @recursion %>;
-<% if !@allow_recursion.empty? -%>
-    allow-recursion { <%= @allow_recursion.join("; ") %>; };
-<% end -%>
-<% if !@allow_transfer.empty? -%>
-    allow-transfer { <%= @allow_transfer.join("; ") %>; };
-<% end -%>
-<% if !@check_names.empty? -%>
-<% @check_names.each do |line| -%>
-    check-names <%= line %>;
-<% end -%>
-<% end -%>
-
-<% if !@extra_options.empty? -%>
-<% @extra_options.sort_by {|key, value| key}.each do |key,value| -%>
-    <%= key %> <%= value %>;
-<% end -%>
-
-<% end -%>
-    dnssec-enable <%= @dnssec_enable %>;
-    dnssec-validation <%= @dnssec_validation %>;
-    dnssec-lookaside <%= @dnssec_lookaside %>;
-
+<%- if @listen_on_port -%>
+    listen-on port <%= @listen_on_port -%> { <%= @listen_on_addr.join("; ") -%>; };
+<%- end -%>
+<%- if @listen_on_v6_port -%>
+    listen-on-v6 port <%= @listen_on_v6_port -%> { <%= @listen_on_v6_addr.join("; ") -%>; };
+<%- end -%>
+<%- if @recursive_clients -%>
+    recursive-clients <%= @recursive_clients -%>;
+<%- end -%>
+<%- if @tcp_clients -%>
+    tcp-clients <%= @tcp_clients -%>;
+<%- end -%>
+<%- if @transfers_in -%>
+    transfers-in <%= @transfers_in -%>;
+<%- end -%>
+<%- if @transfers_per_ns -%>
+    transfers-per-ns <%= @transfers_per_ns -%>;
+<%- end -%>
+<%- if !@forwarders.empty? -%>
+    forwarders { <%= @forwarders.join("; ") -%>; };
+<%- end -%>
+    directory "<%= @directory -%>";
+<%- if @managed_keys_directory -%>
+    managed-keys-directory "<%= @managed_keys_directory -%>";
+<%- end -%>
+<%- if @hostname -%>
+    hostname "<%= @hostname -%>";
+<%- end -%>
+<%- if @server_id -%>
+    server-id "<%- @server_id.each_byte do |byte| -%><%= byte.to_s(base=16) -%><%- end -%>";
+<%- end -%>
+<%- if @version -%>
+    version "<%= @version -%>";
+<%- end -%>
+<%- if @auth_nxdomain -%>
+    auth-nxdomain <%= @auth_nxdomain -%>;
+<%- end -%>
+<%- if @transfer_format -%>
+    transfer-format <%= @transfer_format -%>;
+<%- end -%>
+<%- if @max_transfer_time_in -%>
+    max-transfer-time-in <%= @max_transfer_time_in -%>;
+<%- end -%>
+<%- if @interface_interval -%>
+    interface-interval <%= @interface_interval -%>;
+<%- end -%>
+<%- if @notif_y -%>
+    notify <%= @notif_y -%>;
+<%- end -%>
+<%- if @dump_file -%>
+    dump-file "<%= @dump_file -%>";
+<%- end -%>
+<%- if @statistics_file -%>
+    statistics-file "<%= @statistics_file -%>";
+<%- end -%>
+<%- if @memstatistics_file -%>
+    memstatistics-file "<%= @memstatistics_file -%>";
+<%- end -%>
+<%- if !@allow_query.empty? -%>
+    allow-query { <%= @allow_query.join("; ") -%>; };
+<%- end -%>
+<%- if !@allow_query_cache.empty? -%>
+    allow-query-cache { <%= @allow_query_cache.join("; ") -%>; };
+<%- end -%>
+    recursion <%= @recursion -%>;
+<%- if !@allow_recursion.empty? -%>
+    allow-recursion { <%= @allow_recursion.join("; ") -%>; };
+<%- end -%>
+<%- if !@allow_transfer.empty? -%>
+    allow-transfer { <%= @allow_transfer.join("; ") -%>; };
+<%- end -%>
+<%- if !@check_names.empty? -%>
+<%- @check_names.each do |line| -%>
+    check-names <%= line -%>;
+<%- end -%>
+<%- end -%>
+<%- if !@extra_options.empty? -%>
+<%- @extra_options.sort_by {|key, value| key}.each do |key,value| -%>
+    <%= key -%> <%= value -%>;
+<%- end -%>
+<%- end -%>
+    dnssec-enable <%= @dnssec_enable -%>;
+    dnssec-validation <%= @dnssec_validation -%>;
+    dnssec-lookaside <%= @dnssec_lookaside -%>;
     /* Path to ISC DLV key */
     bindkeys-file "/etc/named.iscdlv.key";
 };
 
-<% if !@logging.empty? -%>
+<%- if !@logging.empty? -%>
 logging {
-<% @logging.sort_by {|key,value| key}.each do |key,value| -%>
-<% if key['channel'] -%>
-<% value.each do |chkey,chpar| -%>
-    channel <%= chkey %> {
-<% chpar.each do |parval| -%>
-            <%= parval %>;
-<% end -%>
+<%- @logging.sort_by {|key,value| key}.each do |key,value| -%>
+<%- if key['channel'] -%>
+<%- value.each do |chkey,chpar| -%>
+    channel <%= chkey -%> {
+<%- chpar.each do |parval| -%>
+            <%= parval -%>;
+<%- end -%>
     };
-<% end -%>
-<% end -%>
-<% if key['category'] -%>
-<% value.each do |cakey,capar| -%>
-<% capar.each do |parval| -%>
-    category <%= cakey %> { <%= parval %>; };
-<% end -%>
-<% end -%>
-<% end -%>
-<% end -%>
+<%- end -%>
+<%- end -%>
+<%- if key['category'] -%>
+<%- value.each do |cakey,capar| -%>
+<%- capar.each do |parval| -%>
+    category <%= cakey -%> { <%= parval -%>; };
+<%- end -%>
+<%- end -%>
+<%- end -%>
+<%- end -%>
 };
-<% end -%>
+<%- end -%>
 
-<% if !@statistics_channels.empty? -%>
+<%- if !@statistics_channels.empty? -%>
 statistics-channels {
-<% @statistics_channels.sort_by {|key,value| key}.each do |key,value| -%>
-    <%= key %> {
-<% value.each do |stpar| -%>
-      <%= stpar %>;
-<% end -%>
+<%- @statistics_channels.sort_by {|key,value| key}.each do |key,value| -%>
+    <%= key -%> {
+<%- value.each do |stpar| -%>
+      <%= stpar -%>;
+<%- end -%>
   };
-<% end -%>
+<%- end -%>
 };
-<% end -%>
-<% if !@views.empty? -%>
-<% @views.each {|key,value| key}.each do |key,value| -%>
-<% valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
-<% @actview = key %>
-view "<%= key %>" {
-<% valid_keys.sort.each do |valid_key| -%>
-<% if value[valid_key] and !value[valid_key].empty? -%>
-    <%= valid_key %> { <%= value[valid_key].join('; ') %>; };
-<% end -%>
-<% end -%>
-<% if value['masterfile-format'] and !value['masterfile-format'].empty? -%>
-<% value['masterfile-format'].each do |fileformat| -%>
-    masterfile-format <%= fileformat %>;
-<% end -%>
-<% end -%>
-<% if value['notify-source'] and !value['notify-source'].empty? -%>
-<% value['notify-source'].each do |notisource| -%>
-    notify-source <%= notisource %>;
-<% end -%>
-<% end -%>
-<% if value['includes'] and !value['includes'].empty? -%>
-<% value['includes'].each do |filename| -%>
-    include "<%= filename %>";
-<% end -%>
-<% end -%>
-<% if value['recursion'] and !value['recursion'].empty? -%>
-<% value['recursion'].each do |isornot| -%>
-    recursion <%= isornot %>;
+<%- end -%>
+<%- if !@views.empty? -%>
+<%- @views.each {|key,value| key}.each do |key,value| -%>
+<%- valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
+<%- @actview = key -%>
+view "<%= key -%>" {
+<%- valid_keys.sort.each do |valid_key| -%>
+<%- if value[valid_key] and !value[valid_key].empty? -%>
+    <%= valid_key -%> { <%= value[valid_key].join('; ') -%>; };
+<%- end -%>
+<%- end -%>
+<%- if value['masterfile-format'] and !value['masterfile-format'].empty? -%>
+<%- value['masterfile-format'].each do |fileformat| -%>
+    masterfile-format <%= fileformat -%>;
+<%- end -%>
+<%- end -%>
+<%- if value['notify-source'] and !value['notify-source'].empty? -%>
+<%- value['notify-source'].each do |notisource| -%>
+    notify-source <%= notisource -%>;
+<%- end -%>
+<%- end -%>
+<%- if value['includes'] and !value['includes'].empty? -%>
+<%- value['includes'].each do |filename| -%>
+    include "<%= filename -%>";
+<%- end -%>
+<%- end -%>
+<%- if value['recursion'] and !value['recursion'].empty? -%>
+<%- value['recursion'].each do |isornot| -%>
+    recursion <%= isornot -%>;
     include "/etc/bind/zones.rfc1918";
     zone "." IN {
       type hint;
@@ -208,61 +205,61 @@ view "<%= key %>" {
       type master;
       file "/etc/bind/db.255";
     };
-<% end -%>
-<% end -%>
-<% if value['rate-limit'] and !value['rate-limit'].empty? -%>
+<%- end -%>
+<%- end -%>
+<%- if value['rate-limit'] and !value['rate-limit'].empty? -%>
     rate-limit {
-<% value['rate-limit'].each do |rateparam| -%>
-       <%= rateparam %>;
-<% end -%>
+<%- value['rate-limit'].each do |rateparam| -%>
+       <%= rateparam -%>;
+<%- end -%>
     };
-<% end -%>
-<% if value['zones'] and !value['zones'].empty? -%>
+<%- end -%>
+<%- if value['zones'] and !value['zones'].empty? -%>
     /* View specific zones */
-<% value['zones'].sort_by {|key, value| key}.each do |key,value| -%>
-    zone "<%= key %>" IN {
-<% value.each do |line| -%>
-<% if line[0..5] == 'master' -%>
-<% if !@masters.empty? -%>
-<% @masters.each do |mkey, mvalue| -%>
-<% unless mkey == line -%>
-<% next -%>
-<% else -%>
-      masters { <%= mkey %>; }; 
-<% end -%>
-<% end -%>
-<% else -%>
-      <%= line %>;
-<% end -%>
-<% else -%>
-      <%= line %>;
-<% end -%>
-<% end -%>
+<%- value['zones'].sort_by {|key, value| key}.each do |key,value| -%>
+    zone "<%= key -%>" IN {
+<%- value.each do |line| -%>
+<%- if line[0..5] == 'master' -%>
+<%- if !@masters.empty? -%>
+<%- @masters.each do |mkey, mvalue| -%>
+<%- unless mkey == line -%>
+<%- next -%>
+<%- else -%>
+      masters { <%= mkey -%>; }; 
+<%- end -%>
+<%- end -%>
+<%- else -%>
+      <%= line -%>;
+<%- end -%>
+<%- else -%>
+      <%= line -%>;
+<%- end -%>
+<%- end -%>
     };
-<% end -%>
-<% end -%>
-<% if !@zones.empty? -%>
+<%- end -%>
+<%- end -%>
+<%- if !@zones.empty? -%>
     /* Global zones */
-<% @zones.sort_by {|key, value| key}.each do |key,value| -%>
-    zone "<%= key %>" IN {
-<% value.each do |line| -%>
-<% if line[0..10] == 'type slave' -%>
-<% @type = line[5..9] %>
-<% end -%>
-<% if line[0..4] == 'file ' and @type == 'slave' -%>
-<% @file = line.split('"') -%>
-      file "<%= @actview[0..2] %>.<%= @file[1] %>";
-<% else -%>
-      <%= line %>;
-<% end -%>
-<% end -%>
+<%- @zones.sort_by {|key, value| key}.each do |key,value| -%>
+    zone "<%= key -%>" IN {
+<%- value.each do |line| -%>
+<%- if line[0..10] == 'type slave' -%>
+<%- @type = line[5..9] -%>
+<%- end -%>
+<%- if line[0..4] == 'file ' and @type == 'slave' -%>
+<%- @file = line.split('"') -%>
+      file "<%= @actview[0..2] -%>.<%= @file[1] -%>";
+<%- else -%>
+      <%= line -%>;
+<%- end -%>
+<%- end -%>
     };
-<% end -%>
-<% end -%>
+<%- end -%>
+<%- end -%>
 };
-<% end -%>
-<% else -%><%# end views, start no views -%>
-<% if @recursion == 'yes' -%>
+<%- end -%>
+<%- else -%><%-# end views, start no views -%>
+<%- if @recursion == 'yes' -%>
 zone "." IN {
     type hint;
     file "/etc/bind/db.root";
@@ -283,23 +280,23 @@ zone "255.in-addr.arpa" {
     type master;
     file "/etc/bind/db.255";
 };
-<% end -%>
-<% if !@zones.empty? -%>
-<% @zones.sort_by {|key, value| key}.each do |key,value| -%>
-zone "<%= key %>" IN {
-<% value.each do |line| -%>
-    <%= line %>;
-<% end -%>
+<%- end -%>
+<%- if !@zones.empty? -%>
+<%- @zones.sort_by {|key, value| key}.each do |key,value| -%>
+zone "<%= key -%>" IN {
+<%- value.each do |line| -%>
+    <%= line -%>;
+<%- end -%>
 };
-<% end -%>
-<% end -%>
-<% if @recursion == 'yes' -%>
+<%- end -%>
+<%- end -%>
+<%- if @recursion == 'yes' -%>
 include "/etc/bind/zones.rfc1918";
-<% end -%>
-<% end -%><%# end no views -%>
-<% if !@includes.empty? -%>
-<% @includes.each do |filename| -%>
-include "<%= filename %>";
-<% end -%>
-<% end -%>
+<%- end -%>
+<%- end -%><%-# end no views -%>
+<%- if !@includes.empty? -%>
+<%- @includes.each do |filename| -%>
+include "<%= filename -%>";
+<%- end -%>
+<%- end -%>
 
