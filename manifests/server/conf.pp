@@ -110,7 +110,7 @@ define bind::server::conf (
   $tcp_clients            = '100',
   $recursive_clients      = '1000',
   $transfers_in           = '10',
-  $transfer_per_ns        = '2',
+  $transfers_per_ns       = '2',
   $statistics_channels    = {},
   $dump_file              = '/var/named/data/cache_dump.db',
   $statistics_file        = '/var/named/data/named_stats.txt',
