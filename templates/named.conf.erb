@@ -46,6 +46,12 @@ options {
 <% if @tcp_clients -%>
     tcp-clients <%= @tcp_clients %>;
 <% end -%>
+<% if @transfers_in -%>
+    transfers-in <%= @transfers_in %>;
+<% end -%>
+<% if @transfers_per_ns -%>
+    transfers-per-ns <%= @transfers_per_ns %>;
+<% end -%>
 <% if !@forwarders.empty? -%>
     forwarders { <%= @forwarders.join("; ") %>; };
 <% end -%>
