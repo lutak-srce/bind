@@ -159,7 +159,12 @@ statistics-channels {
 <%- if !@views.empty? -%>
 <%- @views.each {|key,value| key}.each do |key,value| -%>
 <%- valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
-<%- @actview = key -%>
+<%- if @primview.empty? -%> 
+<%- @primview = key   -%>
+<%- @passprimview = false -%>
+<%- else -%>
+<%- @passprimview = true -%>
+<%- end -%>
 view "<%= key -%>" {
 <%- valid_keys.sort.each do |valid_key| -%>
 <%- if value[valid_key] and !value[valid_key].empty? -%>
@@ -243,12 +248,9 @@ view "<%= key -%>" {
 <%- @zones.sort_by {|key, value| key}.each do |key,value| -%>
     zone "<%= key -%>" IN {
 <%- value.each do |line| -%>
-<%- if line[0..10] == 'type slave' -%>
-<%- @type = line[5..9] -%>
-<%- end -%>
-<%- if line[0..4] == 'file ' and @type == 'slave' -%>
-<%- @file = line.split('"') -%>
-      file "<%= @actview[0..2] -%>.<%= @file[1] -%>";
+<%- if line[0..10] == 'type slave' and @passprimview -%>
+      in-view "<%= @primview %>"
+<%- break -%>
 <%- else -%>
       <%= line -%>;
 <%- end -%>
@@ -299,4 +301,3 @@ include "/etc/bind/zones.rfc1918";
 include "<%= filename -%>";
 <%- end -%>
 <%- end -%>
-
