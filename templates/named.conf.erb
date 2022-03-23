@@ -159,7 +159,7 @@ statistics-channels {
 <%- if !@views.empty? -%>
 <%- @views.each {|key,value| key}.each do |key,value| -%>
 <%- valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
-<%- if @primview.empty? -%> 
+<%- if @primview.empty? -%>
 <%- @primview = key -%>
 <%- @passprimview = false -%>
 <%- else -%>
