@@ -159,11 +159,11 @@ statistics-channels {
 <%- if !@views.empty? -%>
 <%- @views.each {|key,value| key}.each do |key,value| -%>
 <%- valid_keys = %w(allow-notify allow-query allow-query-on allow-recursion allow-query-cache allow-transfer allow-update-forwarding forwarders match-clients match-destinations match-recursive-only also-notify) -%>
-<%- if @primview.blank? -%>
-<%- @primview = key -%>
-<%- @passprimview = false -%>
+<%- if @primview.nil? -%> 
+<%- @primview = key   -%>
+<%- passprimview = false -%>
 <%- else -%>
-<%- @passprimview = true -%>
+<%- passprimview = true -%>
 <%- end -%>
 view "<%= key -%>" {
 <%- valid_keys.sort.each do |valid_key| -%>
@@ -248,7 +248,7 @@ view "<%= key -%>" {
 <%- @zones.sort_by {|key, value| key}.each do |key,value| -%>
     zone "<%= key -%>" IN {
 <%- value.each do |line| -%>
-<%- if line[0..10] == 'type slave' and @passprimview -%>
+<%- if line[0..10] == 'type slave' and passprimview -%>
       in-view "<%= @primview %>"
 <%- break -%>
 <%- else -%>
@@ -301,3 +301,4 @@ include "/etc/bind/zones.rfc1918";
 include "<%= filename -%>";
 <%- end -%>
 <%- end -%>
+
