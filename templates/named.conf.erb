@@ -249,7 +249,7 @@ view "<%= key -%>" {
     zone "<%= key -%>" IN {
 <%- value.each do |line| -%>
 <%- if line[0..10] == 'type slave' and passprimview -%>
-      in-view "<%= @primview %>"
+      in-view "<%= @primview %>";
 <%- break -%>
 <%- else -%>
       <%= line -%>;
