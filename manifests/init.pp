@@ -29,8 +29,8 @@ class bind (
   if $chroot == true {
     $packagenamesuffix = '-chroot'
     # Different service name with chroot on RHEL7+)
-    if $::osfamily == 'RedHat' and
-        versioncmp($::operatingsystemrelease, '7') >= 0 {
+    if $facts['os']['family'] == 'RedHat' and
+        versioncmp($facts['os']['release']['full'], '7') >= 0 {
       $servicenamesuffix = '-chroot'
     } else {
       $servicenamesuffix = ''
@@ -62,8 +62,8 @@ class bind (
   }
 
   $bindlogsubdirs = [ 'client', 'config', 'database', 'default', 'general', 'lame-servers', 'network',
-		      'notify', 'queries', 'query-errors', 'rate-limit', 'resolver', 'security',
-		      'update', 'update-security', 'xfer-in', 'xfer-out' ]
+          'notify', 'queries', 'query-errors', 'rate-limit', 'resolver', 'security',
+          'update', 'update-security', 'xfer-in', 'xfer-out' ]
 
   $bindlogsubdirs.each |String $bindlogsubdir| {
     file { "${bindlogdir}/${bindlogsubdir}":

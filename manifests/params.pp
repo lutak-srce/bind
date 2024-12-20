@@ -2,7 +2,7 @@
 #
 class bind::params {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $packagenameprefix = 'bind'
       $servicename       = 'named'

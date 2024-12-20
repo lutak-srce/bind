@@ -17,5 +17,5 @@ class bind::service (
     hasstatus => true,
     require   => Class['bind::package'],
   }
-  
+
 }
